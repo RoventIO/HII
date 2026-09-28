@@ -1,0 +1,1144 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEXUS AI // News & AI Native Engineering Portal</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Orbitron & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Orbitron:wght@500;700;900&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            cyan: 'var(--brand-cyan, #00f0ff)',
+                            purple: 'var(--brand-purple, #7000ff)',
+                            pink: 'var(--brand-pink, #ff007f)',
+                            dark: '#0a0d14',
+                            card: 'rgba(15, 23, 42, 0.75)',
+                            border: 'rgba(255, 255, 255, 0.12)'
+                        }
+                    },
+                    fontFamily: {
+                        orbitron: ['Orbitron', 'sans-serif'],
+                        sans: ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        :root {
+            --brand-cyan: #00f0ff;
+            --brand-purple: #7000ff;
+            --brand-pink: #ff007f;
+            --glow-color: rgba(0, 240, 255, 0.35);
+        }
+
+        /* Cyber grid background styling */
+        .bg-cyber-grid {
+            background-color: #06090e;
+            background-image: 
+                linear-gradient(to right, rgba(0, 240, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(0, 240, 255, 0.03) 1px, transparent 1px);
+            background-size: 32px 32px;
+        }
+
+        /* Glassmorphism styling */
+        .glass-panel {
+            background: rgba(13, 19, 33, 0.7);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+
+        .glass-panel-glow {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .glass-panel-glow:hover {
+            border-color: var(--brand-cyan);
+            box-shadow: 0 0 20px var(--glow-color);
+            transform: translateY(-2px);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0a0d14;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(0, 240, 255, 0.3);
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--brand-cyan);
+        }
+
+        /* Glowing text & borders */
+        .glow-text {
+            text-shadow: 0 0 10px var(--glow-color);
+        }
+        .glow-border {
+            box-shadow: 0 0 15px var(--glow-color);
+        }
+
+        /* Scanline Overlay effect */
+        .scanlines {
+            background: linear-gradient(
+                to bottom,
+                rgba(255,255,255,0),
+                rgba(255,255,255,0) 50%,
+                rgba(0, 0, 0, 0.3) 50%,
+                rgba(0, 0, 0, 0.3)
+            );
+            background-size: 100% 4px;
+        }
+
+        /* Marquee ticker animation */
+        @keyframes ticker {
+            0% { transform: translate3d(0, 0, 0); }
+            100% { transform: translate3d(-50%, 0, 0); }
+        }
+        .animate-ticker {
+            display: inline-flex;
+            white-space: nowrap;
+            animation: ticker 35s linear infinite;
+        }
+        .animate-ticker:hover {
+            animation-play-state: paused;
+        }
+
+        /* Pulse glow for live indicators */
+        @keyframes pulse-cyan {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.4; transform: scale(1.15); }
+        }
+        .pulse-indicator {
+            animation: pulse-cyan 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+    </style>
+</head>
+<body class="bg-cyber-grid text-slate-100 min-h-screen font-sans antialiased selection:bg-cyan-500 selection:text-black">
+
+    <!-- TOP BREAKING TICKER BAR -->
+    <div class="bg-slate-950/90 border-b border-cyan-500/20 py-2 overflow-hidden sticky top-0 z-50 backdrop-blur-md">
+        <div class="max-w-7xl mx-mx-auto px-4 flex items-center gap-4">
+            <div class="flex items-center gap-2 bg-cyan-950/80 text-cyan-400 border border-cyan-500/40 px-2.5 py-1 rounded text-xs font-orbitron font-semibold shrink-0">
+                <span class="w-2 h-2 rounded-full bg-cyan-400 pulse-indicator"></span>
+                LIVE FEED
+            </div>
+            <div class="overflow-hidden flex-1 relative text-xs text-slate-300 font-mono">
+                <div class="animate-ticker flex items-center gap-8">
+                    <span><strong class="text-cyan-400">[AGENTS]:</strong> Claude 3.5 Sonnet & GPT-4o autonomous software agents reach 91% benchmarks in multi-file bug resolution.</span>
+                    <span><strong class="text-purple-400">[ROBOTICS]:</strong> Boston Dynamics Atlas Electric deployed across automotive assembly pipelines in Michigan.</span>
+                    <span><strong class="text-pink-400">[HARDWARE]:</strong> Next-gen liquid-cooled AI cluster scales past 100,000 H200 equivalent chips.</span>
+                    <span><strong class="text-cyan-400">[ENGINEERING]:</strong> 73% of Y-Combinator modern batch teams self-identify as 'AI Native Engineering Lead'.</span>
+                    <!-- Duplicate for seamless ticker loop -->
+                    <span><strong class="text-cyan-400">[AGENTS]:</strong> Claude 3.5 Sonnet & GPT-4o autonomous software agents reach 91% benchmarks in multi-file bug resolution.</span>
+                    <span><strong class="text-purple-400">[ROBOTICS]:</strong> Boston Dynamics Atlas Electric deployed across automotive assembly pipelines in Michigan.</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN HEADER / NAVBAR -->
+    <header class="border-b border-white/10 glass-panel sticky top-[37px] z-40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
+            <!-- Brand Logo -->
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-cyan-500 via-purple-600 to-pink-500 p-[1px] flex items-center justify-center shadow-lg shadow-cyan-500/20">
+                    <div class="w-full h-full bg-slate-950 rounded-[11px] flex items-center justify-center">
+                        <i class="fa-solid fa-microchip text-cyan-400 text-lg"></i>
+                    </div>
+                </div>
+                <div>
+                    <span class="font-orbitron font-extrabold text-2xl tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 glow-text">
+                        NEXUS<span class="text-white font-light text-xl">//</span>AI
+                    </span>
+                    <p class="text-[10px] font-mono text-slate-400 tracking-widest uppercase">The AI Native & Robotics Wire</p>
+                </div>
+            </div>
+
+            <!-- Search Bar -->
+            <div class="hidden md:flex flex-1 max-w-md relative mx-4">
+                <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
+                <input type="text" id="searchInput" oninput="handleSearch()" placeholder="Search AI news, models, agents, robotics..." 
+                    class="w-full bg-slate-900/80 border border-slate-700/60 focus:border-cyan-400 text-sm text-slate-200 placeholder-slate-500 pl-10 pr-4 py-2 rounded-xl focus:outline-none focus:ring-1 focus:ring-cyan-400 transition">
+            </div>
+
+            <!-- Action Controls -->
+            <div class="flex items-center gap-3">
+                <!-- Theme Palette Customizer -->
+                <div class="relative group">
+                    <button class="p-2.5 rounded-xl bg-slate-900 border border-slate-700/60 text-slate-300 hover:text-cyan-400 hover:border-cyan-500/50 transition" title="Accent Color Theme">
+                        <i class="fa-solid fa-palette"></i>
+                    </button>
+                    <div class="absolute right-0 top-full mt-2 hidden group-hover:flex bg-slate-900 border border-slate-700 p-2 rounded-xl space-x-2 z-50 shadow-2xl">
+                        <button onclick="setTheme('#00f0ff', '#7000ff')" class="w-6 h-6 rounded-full bg-cyan-400 border border-white/20"></button>
+                        <button onclick="setTheme('#10b981', '#065f46')" class="w-6 h-6 rounded-full bg-emerald-400 border border-white/20"></button>
+                        <button onclick="setTheme('#ff007f', '#800040')" class="w-6 h-6 rounded-full bg-pink-500 border border-white/20"></button>
+                        <button onclick="setTheme('#f59e0b', '#78350f')" class="w-6 h-6 rounded-full bg-amber-400 border border-white/20"></button>
+                    </div>
+                </div>
+
+                <!-- Saved / Bookmarks Modal Trigger -->
+                <button onclick="toggleBookmarksDrawer()" class="relative p-2.5 rounded-xl bg-slate-900 border border-slate-700/60 text-slate-300 hover:text-cyan-400 hover:border-cyan-500/50 transition">
+                    <i class="fa-solid fa-bookmark"></i>
+                    <span id="bookmarkCountBadge" class="absolute -top-1 -right-1 w-5 h-5 bg-cyan-500 text-slate-950 font-bold text-[10px] rounded-full flex items-center justify-center">0</span>
+                </button>
+
+                <!-- Subscribe Button -->
+                <button onclick="openSubscribeModal()" class="hidden sm:flex items-center gap-2 bg-gradient-to-r from-cyan-500 to-purple-600 hover:from-cyan-400 hover:to-purple-500 text-slate-950 font-semibold px-4 py-2 rounded-xl text-sm transition transform hover:scale-[1.02] active:scale-[0.98] shadow-lg shadow-cyan-500/20">
+                    <i class="fa-solid fa-bolt text-xs"></i>
+                    <span>Subscribe Wire</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-12">
+
+        <!-- LIVE INDUSTRY METRICS WIDGET -->
+        <section class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div class="glass-panel p-4 rounded-2xl border-l-4 border-l-cyan-400 flex flex-col">
+                <div class="flex items-center justify-between text-slate-400 text-xs font-mono mb-1">
+                    <span>ACTIVE AGENTS</span>
+                    <i class="fa-solid fa-robot text-cyan-400"></i>
+                </div>
+                <div class="text-2xl lg:text-3xl font-orbitron font-bold text-white glow-text" id="statAgents">1,482,900</div>
+                <p class="text-[11px] text-emerald-400 mt-1 flex items-center gap-1">
+                    <i class="fa-solid fa-arrow-trend-up"></i> +34.2% this week
+                </p>
+            </div>
+
+            <div class="glass-panel p-4 rounded-2xl border-l-4 border-l-purple-500 flex flex-col">
+                <div class="flex items-center justify-between text-slate-400 text-xs font-mono mb-1">
+                    <span>AI NATIVE REPOS</span>
+                    <i class="fa-solid fa-code-branch text-purple-400"></i>
+                </div>
+                <div class="text-2xl lg:text-3xl font-orbitron font-bold text-white" id="statRepos">482,120</div>
+                <p class="text-[11px] text-purple-400 mt-1 flex items-center gap-1">
+                    <i class="fa-solid fa-fire"></i> Prompt-first repos
+                </p>
+            </div>
+
+            <div class="glass-panel p-4 rounded-2xl border-l-4 border-l-pink-500 flex flex-col">
+                <div class="flex items-center justify-between text-slate-400 text-xs font-mono mb-1">
+                    <span>GLOBAL COMPUTE (FLOPS)</span>
+                    <i class="fa-solid fa-bolt text-pink-400"></i>
+                </div>
+                <div class="text-2xl lg:text-3xl font-orbitron font-bold text-white" id="statFlops">89.4 ZFLOPS</div>
+                <p class="text-[11px] text-cyan-400 mt-1 flex items-center gap-1">
+                    <i class="fa-solid fa-server"></i> 99.8% Capacity
+                </p>
+            </div>
+
+            <div class="glass-panel p-4 rounded-2xl border-l-4 border-l-emerald-400 flex flex-col">
+                <div class="flex items-center justify-between text-slate-400 text-xs font-mono mb-1">
+                    <span>HUMANOID UNITS ACTIVE</span>
+                    <i class="fa-solid fa-person-walking text-emerald-400"></i>
+                </div>
+                <div class="text-2xl lg:text-3xl font-orbitron font-bold text-white" id="statRobots">14,350</div>
+                <p class="text-[11px] text-emerald-400 mt-1 flex items-center gap-1">
+                    <i class="fa-solid fa-industry"></i> Deploying in factories
+                </p>
+            </div>
+        </section>
+
+        <!-- CATEGORY FILTERS & MOBILE SEARCH -->
+        <section class="space-y-4">
+            <!-- Mobile Search Input -->
+            <div class="md:hidden relative">
+                <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
+                <input type="text" oninput="handleSearch()" placeholder="Search news & agents..." 
+                    class="w-full bg-slate-900 border border-slate-700 text-sm text-slate-200 placeholder-slate-500 pl-10 pr-4 py-2.5 rounded-xl">
+            </div>
+
+            <!-- Filter Buttons -->
+            <div class="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none" id="categoryContainer">
+                <!-- Dynamically populated via JS -->
+            </div>
+        </section>
+
+        <!-- HERO BREAKING NEWS SPOTLIGHT -->
+        <section class="grid grid-cols-1 lg:grid-cols-12 gap-6" id="heroSection">
+            <!-- Main Featured Story (8 cols) -->
+            <div class="lg:col-span-8 group relative rounded-3xl overflow-hidden glass-panel border border-cyan-500/30 transition duration-300 hover:border-cyan-400 shadow-2xl">
+                <div class="relative h-96 sm:h-[460px] overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=80" 
+                        alt="Autonomous AI Agents" 
+                        class="w-full h-full object-cover object-center group-hover:scale-105 transition duration-700 ease-out">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/60 to-transparent"></div>
+                    
+                    <!-- Content overlay -->
+                    <div class="absolute bottom-0 inset-x-0 p-6 sm:p-8 space-y-4">
+                        <div class="flex flex-wrap items-center gap-2">
+                            <span class="bg-cyan-500/20 text-cyan-300 border border-cyan-400/30 px-3 py-1 rounded-full text-xs font-mono font-semibold uppercase tracking-wider">
+                                Featured Breakthrough
+                            </span>
+                            <span class="text-xs font-mono text-slate-400"><i class="fa-regular fa-clock"></i> 25 mins ago</span>
+                        </div>
+                        <h1 class="text-2xl sm:text-4xl font-orbitron font-extrabold text-white leading-tight group-hover:text-cyan-300 transition">
+                            Autonomous Coding Agents Reach Paradigm Shift: The Rise of 100% Prompt-Driven Software Teams
+                        </h1>
+                        <p class="text-slate-300 text-sm sm:text-base line-clamp-2 max-w-3xl">
+                            Next-generation orchestration models now synthesize, test, and auto-deploy complex distributed software architectures with zero human syntax editing required.
+                        </p>
+                        <div class="flex items-center justify-between pt-2">
+                            <button onclick="openArticleModal(1)" class="inline-flex items-center gap-2 bg-cyan-400 text-slate-950 font-bold px-5 py-2.5 rounded-xl hover:bg-cyan-300 transition text-sm">
+                                Read Full Report <i class="fa-solid fa-arrow-right"></i>
+                            </button>
+                            <button onclick="toggleBookmark(1, event)" class="p-2.5 rounded-xl bg-slate-900/80 hover:bg-slate-800 text-slate-300 hover:text-cyan-400 border border-white/10 transition">
+                                <i class="fa-regular fa-bookmark"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Secondary Featured Cards (4 cols) -->
+            <div class="lg:col-span-4 flex flex-col gap-6">
+                <!-- Card 1 -->
+                <div onclick="openArticleModal(2)" class="glass-panel glass-panel-glow p-5 rounded-2xl cursor-pointer flex gap-4 items-center group">
+                    <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=300&q=80" alt="Robotics" class="w-24 h-24 rounded-xl object-cover shrink-0 border border-white/10">
+                    <div class="space-y-1.5">
+                        <span class="text-[10px] font-mono text-purple-400 bg-purple-500/10 px-2 py-0.5 rounded border border-purple-500/20 uppercase">Robotics & Embodied</span>
+                        <h3 class="font-orbitron font-bold text-sm text-white group-hover:text-cyan-300 line-clamp-2">
+                            Unitree & Tesla Unveil Next-Gen Actuators for Tactile Precision
+                        </h3>
+                        <p class="text-xs text-slate-400"><i class="fa-regular fa-clock"></i> 2 hours ago</p>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div onclick="openArticleModal(3)" class="glass-panel glass-panel-glow p-5 rounded-2xl cursor-pointer flex gap-4 items-center group">
+                    <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=300&q=80" alt="Chips" class="w-24 h-24 rounded-xl object-cover shrink-0 border border-white/10">
+                    <div class="space-y-1.5">
+                        <span class="text-[10px] font-mono text-pink-400 bg-pink-500/10 px-2 py-0.5 rounded border border-pink-500/20 uppercase">Hardware & Chips</span>
+                        <h3 class="font-orbitron font-bold text-sm text-white group-hover:text-pink-300 line-clamp-2">
+                            Neuromorphic Photonic Processors Lower LLM Power Draw by 80%
+                        </h3>
+                        <p class="text-xs text-slate-400"><i class="fa-regular fa-clock"></i> 4 hours ago</p>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div onclick="openArticleModal(4)" class="glass-panel glass-panel-glow p-5 rounded-2xl cursor-pointer flex gap-4 items-center group">
+                    <img src="https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?auto=format&fit=crop&w=300&q=80" alt="AI Native Dev" class="w-24 h-24 rounded-xl object-cover shrink-0 border border-white/10">
+                    <div class="space-y-1.5">
+                        <span class="text-[10px] font-mono text-cyan-400 bg-cyan-500/10 px-2 py-0.5 rounded border border-cyan-500/20 uppercase">AI Native Engineering</span>
+                        <h3 class="font-orbitron font-bold text-sm text-white group-hover:text-cyan-300 line-clamp-2">
+                            Cursor & Claude 3.5 Redefine Tech Stack Architecture Standard
+                        </h3>
+                        <p class="text-xs text-slate-400"><i class="fa-regular fa-clock"></i> 6 hours ago</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SPECIAL SPOTLIGHT SECTION: AI NATIVE ENGINEERS -->
+        <section class="glass-panel rounded-3xl p-6 sm:p-10 border border-cyan-500/30 relative overflow-hidden">
+            <!-- Background Glow effect -->
+            <div class="absolute -right-20 -bottom-20 w-80 h-80 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="absolute -left-20 -top-20 w-80 h-80 bg-purple-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+            <div class="relative z-10 space-y-8">
+                <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-white/10 pb-6">
+                    <div>
+                        <div class="inline-flex items-center gap-2 text-xs font-mono font-semibold text-cyan-400 uppercase tracking-widest bg-cyan-500/10 border border-cyan-500/20 px-3 py-1 rounded-full mb-3">
+                            <i class="fa-solid fa-code text-cyan-400"></i> Industry Transformation Spotlight
+                        </div>
+                        <h2 class="text-3xl sm:text-4xl font-orbitron font-extrabold text-white">
+                            The Era of the <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400">AI Native Engineer</span>
+                        </h2>
+                    </div>
+                    <p class="text-slate-400 text-sm max-w-md">
+                        Moving beyond syntax typing. Modern software architects manage swarms of autonomous coding agents, prompt-based intent specs, and continuous verification loops.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6" id="aiNativeSpotlightCards">
+                    <!-- Cards injected via JS or predefined -->
+                </div>
+            </div>
+        </section>
+
+        <!-- ROBOTICS & EMBODIED AI SHOWCASE SECTION -->
+        <section class="space-y-6">
+            <div class="flex items-center justify-between border-b border-white/10 pb-4">
+                <div class="flex items-center gap-3">
+                    <div class="w-3 h-8 bg-purple-500 rounded-full"></div>
+                    <h2 class="text-2xl sm:text-3xl font-orbitron font-bold text-white">
+                        Robotics & Embodied Intelligence
+                    </h2>
+                </div>
+                <span class="text-xs font-mono text-slate-400">Humanoid Hardware Feed</span>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" id="roboticsCards">
+                <!-- Dynamically Rendered via JS -->
+            </div>
+        </section>
+
+        <!-- MAIN NEWS GRID WITH SIDEBAR -->
+        <section class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+            <!-- News Stream (8 cols) -->
+            <div class="lg:col-span-8 space-y-6">
+                <div class="flex items-center justify-between">
+                    <h3 class="text-xl font-orbitron font-bold text-white flex items-center gap-2">
+                        <i class="fa-solid fa-newspaper text-cyan-400"></i> Latest News Stream
+                    </h3>
+                    <div class="text-xs font-mono text-slate-400">
+                        Showing <span id="displayedArticleCount" class="text-cyan-400 font-bold">0</span> stories
+                    </div>
+                </div>
+
+                <div class="space-y-6" id="newsFeedContainer">
+                    <!-- Dynamic News Feed Items injected here -->
+                </div>
+            </div>
+
+            <!-- Sidebar Widgets (4 cols) -->
+            <aside class="lg:col-span-4 space-y-8">
+                <!-- Trending Tags Widget -->
+                <div class="glass-panel p-6 rounded-2xl border border-white/10 space-y-4">
+                    <h4 class="font-orbitron font-bold text-base text-white flex items-center gap-2">
+                        <i class="fa-solid fa-hashtag text-pink-400"></i> Trending Intelligence Tags
+                    </h4>
+                    <div class="flex flex-wrap gap-2" id="trendingTags">
+                        <!-- Dynamic Tags -->
+                    </div>
+                </div>
+
+                <!-- Live Agent Benchmark Leaderboard Widget -->
+                <div class="glass-panel p-6 rounded-2xl border border-white/10 space-y-4">
+                    <h4 class="font-orbitron font-bold text-base text-white flex items-center gap-2">
+                        <i class="fa-solid fa-trophy text-amber-400"></i> Agent Leaderboard (SWE-bench)
+                    </h4>
+                    <div class="space-y-3 font-mono text-xs">
+                        <div class="flex items-center justify-between p-2.5 rounded-xl bg-slate-900/80 border border-slate-800">
+                            <span class="text-cyan-300 font-bold">1. Claude 3.5 Sonnet + Agent</span>
+                            <span class="text-emerald-400 font-bold">92.4%</span>
+                        </div>
+                        <div class="flex items-center justify-between p-2.5 rounded-xl bg-slate-900/80 border border-slate-800">
+                            <span class="text-slate-300">2. Cursor Composer Autopilot</span>
+                            <span class="text-emerald-400 font-bold">89.1%</span>
+                        </div>
+                        <div class="flex items-center justify-between p-2.5 rounded-xl bg-slate-900/80 border border-slate-800">
+                            <span class="text-slate-300">3. Devin 2.0 Autonomous</span>
+                            <span class="text-emerald-400 font-bold">87.5%</span>
+                        </div>
+                        <div class="flex items-center justify-between p-2.5 rounded-xl bg-slate-900/80 border border-slate-800">
+                            <span class="text-slate-300">4. GPT-4o Agent Swarm</span>
+                            <span class="text-emerald-400 font-bold">85.0%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AI Newsletter Box -->
+                <div class="glass-panel p-6 rounded-2xl border border-cyan-500/30 bg-gradient-to-br from-slate-900 via-slate-900 to-cyan-950/40 space-y-4">
+                    <div class="w-10 h-10 rounded-xl bg-cyan-500/20 border border-cyan-400/40 flex items-center justify-center text-cyan-400">
+                        <i class="fa-solid fa-paper-plane"></i>
+                    </div>
+                    <h4 class="font-orbitron font-bold text-lg text-white">
+                        AI Native Weekly Briefing
+                    </h4>
+                    <p class="text-xs text-slate-300">
+                        Get curated prompts, agent architecture breakdowns, and humanoid robotics updates delivered to your inbox every Monday.
+                    </p>
+                    <form onsubmit="handleSubscribe(event)" class="space-y-2">
+                        <input type="email" required placeholder="developer@firm.ai" 
+                            class="w-full bg-slate-950 border border-slate-700 focus:border-cyan-400 text-xs text-slate-200 px-3.5 py-2.5 rounded-xl focus:outline-none">
+                        <button type="submit" class="w-full bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-bold text-xs py-2.5 rounded-xl transition">
+                            Subscribe Briefing
+                        </button>
+                    </form>
+                </div>
+            </aside>
+        </section>
+    </main>
+
+    <!-- ARTICLE DETAIL MODAL -->
+    <div id="articleModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 sm:p-6 bg-slate-950/80 backdrop-blur-md">
+        <div class="glass-panel border border-cyan-500/30 rounded-3xl max-w-3xl w-full max-h-[90vh] overflow-y-auto relative p-6 sm:p-8 space-y-6 shadow-2xl">
+            <!-- Close Button -->
+            <button onclick="closeArticleModal()" class="absolute top-6 right-6 p-2 rounded-xl bg-slate-900 border border-slate-700 text-slate-400 hover:text-white transition">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+
+            <!-- Category & Date -->
+            <div class="flex items-center gap-3">
+                <span id="modalCategory" class="px-3 py-1 rounded-full text-xs font-mono font-semibold bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">
+                    CATEGORY
+                </span>
+                <span id="modalDate" class="text-xs font-mono text-slate-400">DATE</span>
+            </div>
+
+            <!-- Article Title -->
+            <h2 id="modalTitle" class="text-2xl sm:text-3xl font-orbitron font-bold text-white">
+                ARTICLE TITLE
+            </h2>
+
+            <!-- Audio Reader Player Simulation -->
+            <div class="bg-slate-900/90 border border-slate-800 p-3.5 rounded-2xl flex items-center gap-4">
+                <button id="audioPlayBtn" onclick="toggleAudioReader()" class="w-10 h-10 rounded-xl bg-cyan-400 text-slate-950 flex items-center justify-center font-bold hover:bg-cyan-300 transition">
+                    <i class="fa-solid fa-play" id="audioIcon"></i>
+                </button>
+                <div class="flex-1 space-y-1">
+                    <div class="flex justify-between text-xs font-mono text-slate-400">
+                        <span><i class="fa-solid fa-headset text-cyan-400 mr-1"></i> Synthetic AI Voice Briefing</span>
+                        <span id="audioTimer">00:00 / 02:30</span>
+                    </div>
+                    <div class="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden">
+                        <div id="audioProgressBar" class="bg-gradient-to-r from-cyan-400 to-purple-500 h-full w-0 transition-all duration-300"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Featured Image -->
+            <div class="rounded-2xl overflow-hidden border border-white/10 h-64 sm:h-80">
+                <img id="modalImage" src="" alt="Article image" class="w-full h-full object-cover">
+            </div>
+
+            <!-- Key Takeaways Box -->
+            <div class="bg-cyan-950/30 border border-cyan-500/30 p-4 rounded-2xl space-y-2">
+                <h4 class="text-xs font-mono font-bold text-cyan-400 uppercase tracking-wider flex items-center gap-2">
+                    <i class="fa-solid fa-bolt"></i> Executive Key Takeaways
+                </h4>
+                <ul id="modalTakeaways" class="list-disc list-inside text-sm text-slate-300 space-y-1">
+                    <!-- Takeaways populated via JS -->
+                </ul>
+            </div>
+
+            <!-- Full Body Text -->
+            <div id="modalBody" class="text-slate-300 text-sm sm:text-base leading-relaxed space-y-4 font-sans">
+                <!-- Article paragraph content -->
+            </div>
+
+            <!-- Modal Footer Actions -->
+            <div class="flex items-center justify-between border-t border-white/10 pt-4">
+                <div class="flex items-center gap-4">
+                    <button id="modalLikeBtn" onclick="toggleModalLike()" class="flex items-center gap-2 text-xs font-mono text-slate-400 hover:text-pink-400 transition bg-slate-900 border border-slate-800 px-3 py-2 rounded-xl">
+                        <i class="fa-regular fa-heart text-pink-400" id="modalLikeIcon"></i>
+                        <span id="modalLikesCount">142</span>
+                    </button>
+                    <button onclick="copyArticleLink()" class="flex items-center gap-2 text-xs font-mono text-slate-400 hover:text-cyan-400 transition bg-slate-900 border border-slate-800 px-3 py-2 rounded-xl">
+                        <i class="fa-solid fa-share-nodes"></i>
+                        <span>Share</span>
+                    </button>
+                </div>
+                <button id="modalBookmarkBtn" onclick="toggleModalBookmark()" class="flex items-center gap-2 text-xs font-mono bg-cyan-500/20 hover:bg-cyan-500/30 text-cyan-300 border border-cyan-500/40 px-4 py-2 rounded-xl transition">
+                    <i class="fa-regular fa-bookmark"></i>
+                    <span id="modalBookmarkText">Save Article</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- BOOKMARKS DRAWER SLIDE-OVER -->
+    <div id="bookmarksDrawer" class="fixed inset-0 z-50 hidden">
+        <div class="absolute inset-0 bg-slate-950/70 backdrop-blur-sm" onclick="toggleBookmarksDrawer()"></div>
+        <div class="absolute right-0 top-0 bottom-0 w-full max-w-md glass-panel border-l border-cyan-500/30 p-6 space-y-6 overflow-y-auto">
+            <div class="flex items-center justify-between border-b border-white/10 pb-4">
+                <h3 class="font-orbitron font-bold text-lg text-white flex items-center gap-2">
+                    <i class="fa-solid fa-bookmark text-cyan-400"></i> Saved Articles
+                </h3>
+                <button onclick="toggleBookmarksDrawer()" class="text-slate-400 hover:text-white">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+
+            <div id="bookmarksList" class="space-y-4">
+                <!-- Dynamically populated saved articles -->
+            </div>
+        </div>
+    </div>
+
+    <!-- NOTIFICATION TOAST -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 hidden glass-panel border border-cyan-400/50 text-cyan-300 px-5 py-3 rounded-2xl shadow-2xl flex items-center gap-3 text-sm font-mono">
+        <i class="fa-solid fa-circle-check text-cyan-400 text-base"></i>
+        <span id="toastMessage">Action completed successfully.</span>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-white/10 glass-panel mt-20 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
+            <div class="space-y-2 text-center md:text-left">
+                <span class="font-orbitron font-bold text-lg text-white">NEXUS//AI</span>
+                <p class="text-xs text-slate-400">Leading Wire for Autonomous Intelligence, Agentic Workflows & Robotics.</p>
+            </div>
+            <div class="flex items-center gap-6 text-xs text-slate-400 font-mono">
+                <a href="#" class="hover:text-cyan-400 transition">API Access</a>
+                <a href="#" class="hover:text-cyan-400 transition">Benchmarks</a>
+                <a href="#" class="hover:text-cyan-400 transition">Editorial Board</a>
+                <a href="#" class="hover:text-cyan-400 transition">Privacy Spectrum</a>
+            </div>
+            <div class="text-xs text-slate-500 font-mono">
+                © 2026 NEXUS AI Network. All systems operational.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // DATA SET FOR AI NEWS & ARTICLES
+        const articlesData = [
+            {
+                id: 1,
+                title: "Autonomous Coding Agents Reach Paradigm Shift: The Rise of 100% Prompt-Driven Software Teams",
+                category: "AI Native Engineering",
+                date: "12 mins ago",
+                image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80",
+                summary: "Next-generation orchestration models synthesize, test, and auto-deploy complex distributed software architectures with zero human syntax editing required.",
+                takeaways: [
+                    "Over 65% of enterprise software logic is now drafted through high-level intent prompts.",
+                    "Agentic debugging loops execute in isolated sandbox environments with 99.2% accuracy.",
+                    "Traditional syntax writing is transitioning to system architecture oversight and spec validation."
+                ],
+                body: "The landscape of software development has permanently shifted. Engineers are no longer writing line-by-line syntax; instead, they operate as Chief System Architects directing teams of specialized AI agents. Platforms powered by state-of-the-art models handle continuous integration, regression testing, and instant multi-repo refactoring in real time.\n\nIndustry leaders report velocity gains exceeding 400%, allowing developers to focus entirely on domain architecture, product mechanics, and user experience.",
+                likes: 342,
+                tags: ["AI Native", "Agents", "Claude 3.5", "Devin"]
+            },
+            {
+                id: 2,
+                title: "Boston Dynamics & Optimus Gen 2 Deploy Joint Actuator Protocols in Smart Plants",
+                category: "Robotics & Embodied AI",
+                date: "1 hour ago",
+                image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=800&q=80",
+                summary: "Tactile sensor feedback loops enable electric humanoid platforms to perform delicate micro-assembly without human intervention.",
+                takeaways: [
+                    "Humanoid hands now achieve sub-millimeter tactile touch resolution.",
+                    "Zero-shot imitation learning allows robots to adapt to new warehouse tasks in under 10 minutes.",
+                    "Battery efficiency improvements support 12-hour continuous physical shifts."
+                ],
+                body: "Deployments across automotive manufacturing plants have proven that electric humanoid units can seamlessly operate beside human assembly teams. Utilizing neural vision-action models, these systems generalize physical tasks without requiring manual trajectory programming.",
+                likes: 215,
+                tags: ["Humanoids", "Boston Dynamics", "Optimus", "Tactile"]
+            },
+            {
+                id: 3,
+                title: "Neuromorphic Photonic Processors Lower LLM Power Draw by 80%",
+                category: "Hardware & Chips",
+                date: "3 hours ago",
+                image: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=800&q=80",
+                summary: "Optical AI chips perform tensor matrix multiplication at the speed of light while dramatically minimizing thermal dissipation.",
+                takeaways: [
+                    "Light-based matrix multiplication removes electrical heat bottlenecks.",
+                    "Inference latency dropped to sub-millisecond ranges for trillion-parameter models.",
+                    "Data centers can triple model density without upgrading power infrastructure."
+                ],
+                body: "Photonic chip architectures use lasers rather than electrons to compute matrix calculations. This optical computing breakthrough enables hyper-efficient inference nodes that drastically reduce global AI energy consumption.",
+                likes: 189,
+                tags: ["Photonics", "Silicon", "Hardware", "Green AI"]
+            },
+            {
+                id: 4,
+                title: "Cursor & Claude 3.5 Redefine Tech Stack Architecture Standard",
+                category: "AI Native Engineering",
+                date: "5 hours ago",
+                image: "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?auto=format&fit=crop&w=800&q=80",
+                summary: "Integrated developer environments now feature native agent swarms capable of refactoring whole codebases in seconds.",
+                takeaways: [
+                    "Inline multi-file generation becomes the primary workflow for senior staff.",
+                    "Context windows expanding to 2 Million tokens allow full codebase loading.",
+                    "Synthesized test coverage reaches automated 100% execution."
+                ],
+                body: "AI Native development tools have integrated deeply into the IDE ecosystem. Developers specify business constraints and design requirements in natural language, while automated agents resolve dependency trees and execute integration suites seamlessly.",
+                likes: 412,
+                tags: ["Cursor", "Claude", "Developer Experience"]
+            },
+            {
+                id: 5,
+                title: "Unitree G1 Mass Production Commences: $16K Humanoid Commercial Access",
+                category: "Robotics & Embodied AI",
+                date: "8 hours ago",
+                image: "https://images.unsplash.com/photo-1531746790731-6c087fecd65a?auto=format&fit=crop&w=800&q=80",
+                summary: "Accessible humanoid hardware unleashes an explosion of open-source embodied AI research globally.",
+                takeaways: [
+                    "Lower hardware costs democratize humanoid robotics research.",
+                    "360-degree LiDAR and depth camera arrays integrated into head unit.",
+                    "Supported by open-source ROS 2 and PyTorch embodied frameworks."
+                ],
+                body: "The mass delivery of affordable humanoid platforms enables research labs and startups worldwide to develop specialized models for domestic, medical, and industrial automation tasks.",
+                likes: 298,
+                tags: ["Unitree", "Robotics", "Open Source"]
+            },
+            {
+                id: 6,
+                title: "Self-Evolving Reasoning Models Solve Unresolved Pure Math Conjectures",
+                category: "Research",
+                date: "12 hours ago",
+                image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80",
+                summary: "Test-time compute scaling unlocks novel mathematical proofs validated by international peer committees.",
+                takeaways: [
+                    "Reinforcement learning over mathematical logic trees yields novel theorems.",
+                    "Automated formal verification engines eliminate hallucinated math proofs.",
+                    "Collaborative human-AI mathematician teams publish groundbreaking papers."
+                ],
+                body: "By spending more compute time during inference, reasoning-focused AI architectures systematically explore millions of proof trees, resulting in elegant solutions to long-standing conjectures.",
+                likes: 520,
+                tags: ["Reasoning", "Math", "Research", "Formal Verification"]
+            }
+        ];
+
+        // AI NATIVE SPOTLIGHT CARDS DATA
+        const aiNativeSpotlightData = [
+            {
+                icon: "fa-solid fa-brain-circuit",
+                color: "text-cyan-400",
+                title: "Prompt-As-Code Architecture",
+                desc: "Codebases are structured around high-level specifications, intent prompts, and domain rules. Automated agents translate these into optimized, executable code."
+            },
+            {
+                icon: "fa-solid fa-diagram-project",
+                color: "text-purple-400",
+                title: "Agentic Loop Debugging",
+                desc: "Engineers don't step through debuggers manually; they deploy agent monitors that catch runtime exceptions, generate patches, and run integration tests automatically."
+            },
+            {
+                icon: "fa-solid fa-layer-group",
+                color: "text-pink-400",
+                title: "Multi-Model Orchestration",
+                desc: "Leveraging specialized LLM routing—using fast models for syntax verification and deep reasoning models for architectural planning."
+            }
+        ];
+
+        // ROBOTICS SHOWCASE DATA
+        const roboticsData = [
+            {
+                name: "Tesla Optimus Gen 2",
+                status: "Production Line Active",
+                image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=500&q=80",
+                specs: "11-DOF Hands, Custom Actuators, 30% Weight Reduction"
+            },
+            {
+                name: "Boston Dynamics Atlas",
+                status: "Fully Electric",
+                image: "https://images.unsplash.com/photo-1546776310-eef45dd6d63c?auto=format&fit=crop&w=500&q=80",
+                specs: "360° Joint Rotation, Autonomous Navigation, IP67 Sealed"
+            },
+            {
+                name: "Figure 02",
+                status: "Enterprise Deployment",
+                image: "https://images.unsplash.com/photo-1531746790731-6c087fecd65a?auto=format&fit=crop&w=500&q=80",
+                specs: "Integrated VLM Speech, Onboard Neural Compute, 2.25 kWh Battery"
+            },
+            {
+                name: "Unitree G1",
+                status: "Commercial Shipping",
+                image: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=500&q=80",
+                specs: "$16k Base MSRP, 2 m/s Running Speed, Force Sensor Feet"
+            }
+        ];
+
+        // CATEGORIES LIST
+        const categories = [
+            "All",
+            "AI Native Engineering",
+            "Robotics & Embodied AI",
+            "Generative AI",
+            "Hardware & Chips",
+            "Research"
+        ];
+
+        // APP STATE
+        let activeCategory = "All";
+        let searchQuery = "";
+        let bookmarkedIds = JSON.parse(localStorage.getItem('nexus_bookmarks') || '[]');
+        let currentModalArticleId = null;
+        let isAudioPlaying = false;
+        let audioProgressInterval = null;
+
+        window.addEventListener('DOMContentLoaded', () => {
+            renderCategoryFilters();
+            renderAiNativeSpotlight();
+            renderRoboticsShowcase();
+            renderNewsFeed();
+            renderTrendingTags();
+            updateBookmarkBadge();
+            animateCounters();
+        });
+
+        // RENDER CATEGORY BUTTONS
+        function renderCategoryFilters() {
+            const container = document.getElementById('categoryContainer');
+            container.innerHTML = categories.map(cat => {
+                const isActive = cat === activeCategory;
+                const activeClasses = isActive 
+                    ? "bg-cyan-400 text-slate-950 font-bold border-cyan-400 shadow-lg shadow-cyan-500/20" 
+                    : "bg-slate-900/80 text-slate-300 border-slate-700/60 hover:border-cyan-500/50 hover:text-cyan-300";
+                return `
+                    <button onclick="setCategory('${cat}')" class="px-4 py-2 rounded-xl text-xs font-mono whitespace-nowrap border transition duration-200 ${activeClasses}">
+                        ${cat}
+                    </button>
+                `;
+            }).join('');
+        }
+
+        function setCategory(cat) {
+            activeCategory = cat;
+            renderCategoryFilters();
+            renderNewsFeed();
+        }
+
+        // RENDER AI NATIVE SPOTLIGHT
+        function renderAiNativeSpotlight() {
+            const container = document.getElementById('aiNativeSpotlightCards');
+            container.innerHTML = aiNativeSpotlightData.map(item => `
+                <div class="glass-panel glass-panel-glow p-6 rounded-2xl border border-white/10 space-y-3">
+                    <div class="w-12 h-12 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-xl ${item.color}">
+                        <i class="${item.icon}"></i>
+                    </div>
+                    <h3 class="font-orbitron font-bold text-base text-white">${item.title}</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed">${item.desc}</p>
+                </div>
+            `).join('');
+        }
+
+        // RENDER ROBOTICS SHOWCASE
+        function renderRoboticsShowcase() {
+            const container = document.getElementById('roboticsCards');
+            container.innerHTML = roboticsData.map(bot => `
+                <div class="glass-panel glass-panel-glow rounded-2xl overflow-hidden border border-white/10 group">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="${bot.image}" alt="${bot.name}" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                        <span class="absolute top-3 left-3 bg-slate-950/80 border border-purple-500/40 text-purple-300 px-2.5 py-0.5 rounded-full text-[10px] font-mono">
+                            ${bot.status}
+                        </span>
+                    </div>
+                    <div class="p-4 space-y-2">
+                        <h4 class="font-orbitron font-bold text-sm text-white">${bot.name}</h4>
+                        <p class="text-[11px] text-slate-400 font-mono">${bot.specs}</p>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function renderNewsFeed() {
+            const container = document.getElementById('newsFeedContainer');
+            
+            // Filter articles based on active category & search query
+            const filtered = articlesData.filter(article => {
+                const matchesCategory = activeCategory === "All" || article.category === activeCategory;
+                const matchesSearch = article.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
+                                      article.summary.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                                      article.tags.some(t => t.toLowerCase().includes(searchQuery.toLowerCase()));
+                return matchesCategory && matchesSearch;
+            });
+
+            document.getElementById('displayedArticleCount').innerText = filtered.length;
+
+            if (filtered.length === 0) {
+                container.innerHTML = `
+                    <div class="glass-panel p-12 text-center rounded-2xl space-y-3">
+                        <i class="fa-solid fa-radar text-4xl text-slate-600"></i>
+                        <p class="text-slate-400 font-mono text-sm">No neural signals detected for this query.</p>
+                        <button onclick="clearFilters()" class="text-xs text-cyan-400 hover:underline">Reset search filters</button>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = filtered.map(article => {
+                const isSaved = bookmarkedIds.includes(article.id);
+                return `
+                    <div class="glass-panel glass-panel-glow p-5 sm:p-6 rounded-2xl border border-white/10 space-y-4 transition">
+                        <div class="flex flex-col sm:flex-row gap-5 items-start">
+                            <img src="${article.image}" alt="${article.title}" class="w-full sm:w-48 h-36 rounded-xl object-cover border border-white/10 shrink-0">
+                            
+                            <div class="space-y-2.5 flex-1">
+                                <div class="flex items-center justify-between gap-2">
+                                    <span class="px-2.5 py-0.5 rounded-md text-[10px] font-mono uppercase bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">
+                                        ${article.category}
+                                    </span>
+                                    <span class="text-xs font-mono text-slate-400"><i class="fa-regular fa-clock"></i> ${article.date}</span>
+                                </div>
+
+                                <h3 onclick="openArticleModal(${article.id})" class="text-lg font-orbitron font-bold text-white hover:text-cyan-300 cursor-pointer transition line-clamp-2">
+                                    ${article.title}
+                                </h3>
+
+                                <p class="text-xs sm:text-sm text-slate-300 line-clamp-2 leading-relaxed">
+                                    ${article.summary}
+                                </p>
+
+                                <div class="flex items-center justify-between pt-2">
+                                    <div class="flex items-center gap-2">
+                                        ${article.tags.map(t => `<span class="text-[10px] text-slate-400 font-mono">#${t}</span>`).join('')}
+                                    </div>
+
+                                    <div class="flex items-center gap-3">
+                                        <button onclick="toggleBookmark(${article.id}, event)" class="p-2 rounded-lg bg-slate-900 border border-slate-800 text-slate-400 hover:text-cyan-400 transition" title="Save Article">
+                                            <i class="${isSaved ? 'fa-solid text-cyan-400' : 'fa-regular'} fa-bookmark"></i>
+                                        </button>
+                                        <button onclick="openArticleModal(${article.id})" class="text-xs font-mono text-cyan-400 hover:text-cyan-300 font-semibold flex items-center gap-1">
+                                            Read <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // RENDER TRENDING TAGS
+        function renderTrendingTags() {
+            const tags = ["Claude-3.5-Sonnet", "Agentic-Dev", "Optimus-Gen2", "Photonic-Compute", "Cursor-Composer", "Devin-2.0", "LLM-Reasoning"];
+            const container = document.getElementById('trendingTags');
+            container.innerHTML = tags.map(tag => `
+                <button onclick="searchTag('${tag}')" class="px-3 py-1 rounded-xl text-xs font-mono bg-slate-900 border border-slate-800 text-slate-300 hover:text-cyan-400 hover:border-cyan-500/40 transition">
+                    #${tag}
+                </button>
+            `).join('');
+        }
+
+        // SEARCH & FILTER HANDLERS
+        function handleSearch() {
+            const input = event.target.value;
+            searchQuery = input;
+            renderNewsFeed();
+        }
+
+        function searchTag(tag) {
+            searchQuery = tag;
+            renderNewsFeed();
+            showToast(`Filtered feed by tag #${tag}`);
+        }
+
+        function clearFilters() {
+            searchQuery = "";
+            activeCategory = "All";
+            document.getElementById('searchInput').value = "";
+            renderCategoryFilters();
+            renderNewsFeed();
+        }
+
+        // ARTICLE MODAL LOGIC
+        function openArticleModal(id) {
+            const article = articlesData.find(a => a.id === id);
+            if (!article) return;
+
+            currentModalArticleId = id;
+            document.getElementById('modalCategory').innerText = article.category;
+            document.getElementById('modalDate').innerText = article.date;
+            document.getElementById('modalTitle').innerText = article.title;
+            document.getElementById('modalImage').src = article.image;
+            document.getElementById('modalLikesCount').innerText = article.likes;
+            
+            // Takeaways
+            const takeawaysContainer = document.getElementById('modalTakeaways');
+            takeawaysContainer.innerHTML = article.takeaways.map(t => `<li>${t}</li>`).join('');
+
+            // Body
+            document.getElementById('modalBody').innerText = article.body;
+
+            // Bookmark button state
+            updateModalBookmarkBtnState();
+
+            // Reset Audio Reader state
+            stopAudioReader();
+
+            document.getElementById('articleModal').classList.remove('hidden');
+        }
+
+        function closeArticleModal() {
+            document.getElementById('articleModal').classList.add('hidden');
+            stopAudioReader();
+        }
+
+        // AUDIO READER SIMULATION
+        function toggleAudioReader() {
+            if (isAudioPlaying) {
+                stopAudioReader();
+            } else {
+                startAudioReader();
+            }
+        }
+
+        function startAudioReader() {
+            isAudioPlaying = true;
+            document.getElementById('audioIcon').className = "fa-solid fa-pause";
+            let seconds = 0;
+            const maxSeconds = 150;
+
+            audioProgressInterval = setInterval(() => {
+                seconds += 1;
+                const percentage = (seconds / maxSeconds) * 100;
+                document.getElementById('audioProgressBar').style.width = `${percentage}%`;
+
+                const mins = Math.floor(seconds / 60).toString().padStart(2, '0');
+                const secs = (seconds % 60).toString().padStart(2, '0');
+                document.getElementById('audioTimer').innerText = `${mins}:${secs} / 02:30`;
+
+                if (seconds >= maxSeconds) {
+                    stopAudioReader();
+                }
+            }, 1000);
+
+            showToast("Playing AI voice briefing...");
+        }
+
+        function stopAudioReader() {
+            isAudioPlaying = false;
+            if (audioProgressInterval) clearInterval(audioProgressInterval);
+            document.getElementById('audioIcon').className = "fa-solid fa-play";
+            document.getElementById('audioProgressBar').style.width = `0%`;
+            document.getElementById('audioTimer').innerText = `00:00 / 02:30`;
+        }
+
+        // BOOKMARK MANAGEMENT
+        function toggleBookmark(id, event) {
+            if (event) event.stopPropagation();
+            
+            const index = bookmarkedIds.indexOf(id);
+            if (index > -1) {
+                bookmarkedIds.splice(index, 1);
+                showToast("Removed article from bookmarks.");
+            } else {
+                bookmarkedIds.push(id);
+                showToast("Saved article to bookmarks!");
+            }
+
+            localStorage.setItem('nexus_bookmarks', JSON.stringify(bookmarkedIds));
+            updateBookmarkBadge();
+            renderNewsFeed();
+            if (currentModalArticleId === id) updateModalBookmarkBtnState();
+        }
+
+        function toggleModalBookmark() {
+            if (currentModalArticleId) {
+                toggleBookmark(currentModalArticleId);
+            }
+        }
+
+        function updateModalBookmarkBtnState() {
+            const isSaved = bookmarkedIds.includes(currentModalArticleId);
+            const text = document.getElementById('modalBookmarkText');
+            if (isSaved) {
+                text.innerText = "Saved in Library";
+            } else {
+                text.innerText = "Save Article";
+            }
+        }
+
+        function updateBookmarkBadge() {
+            document.getElementById('bookmarkCountBadge').innerText = bookmarkedIds.length;
+        }
+
+        function toggleBookmarksDrawer() {
+            const drawer = document.getElementById('bookmarksDrawer');
+            drawer.classList.toggle('hidden');
+            if (!drawer.classList.contains('hidden')) {
+                renderBookmarksList();
+            }
+        }
+
+        function renderBookmarksList() {
+            const container = document.getElementById('bookmarksList');
+            const savedArticles = articlesData.filter(a => bookmarkedIds.includes(a.id));
+
+            if (savedArticles.length === 0) {
+                container.innerHTML = `
+                    <p class="text-slate-400 text-xs font-mono text-center py-8">No saved articles yet. Bookmark stories to read offline.</p>
+                `;
+                return;
+            }
+
+            container.innerHTML = savedArticles.map(article => `
+                <div class="p-3.5 rounded-xl bg-slate-900 border border-slate-800 flex gap-3 items-center justify-between">
+                    <div class="space-y-1 pr-2">
+                        <span class="text-[9px] font-mono text-cyan-400 uppercase">${article.category}</span>
+                        <h4 onclick="openArticleModal(${article.id})" class="text-xs font-bold font-orbitron text-white hover:text-cyan-300 cursor-pointer line-clamp-1">
+                            ${article.title}
+                        </h4>
+                    </div>
+                    <button onclick="toggleBookmark(${article.id})" class="text-slate-500 hover:text-pink-400 p-1">
+                        <i class="fa-solid fa-trash text-xs"></i>
+                    </button>
+                </div>
+            `).join('');
+        }
+
+        // MODAL LIKE ACTION
+        function toggleModalLike() {
+            const countEl = document.getElementById('modalLikesCount');
+            let count = parseInt(countEl.innerText);
+            count += 1;
+            countEl.innerText = count;
+            showToast("Liked article!");
+        }
+
+        function copyArticleLink() {
+            const dummy = document.createElement('input');
+            document.body.appendChild(dummy);
+            dummy.value = window.location.href;
+            dummy.select();
+            document.execCommand('copy');
+            document.body.removeChild(dummy);
+            showToast("Article URL copied to clipboard!");
+        }
+
+        // THEME COLOR CUSTOMIZER
+        function setTheme(primaryHex, secondaryHex) {
+            document.documentElement.style.setProperty('--brand-cyan', primaryHex);
+            document.documentElement.style.setProperty('--glow-color', `${primaryHex}55`);
+            showToast(`Theme updated`);
+        }
+
+        // TOAST SYSTEM
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toastMessage').innerText = message;
+            toast.classList.remove('hidden');
+            setTimeout(() => {
+                toast.classList.add('hidden');
+            }, 3000);
+        }
+
+        function openSubscribeModal() {
+            showToast("Enter your email in the sidebar briefing form!");
+        }
+
+        function handleSubscribe(e) {
+            e.preventDefault();
+            showToast("Subscribed! Welcome to the AI Native Wire.");
+        }
+
+        // ANIMATE NUMERIC COUNTERS
+        function animateCounters() {
+            const countUp = (id, target, suffix = '') => {
+                let current = 0;
+                const increment = Math.ceil(target / 40);
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        current = target;
+                        clearInterval(timer);
+                    }
+                    document.getElementById(id).innerText = current.toLocaleString() + suffix;
+                }, 30);
+            };
+
+            countUp('statAgents', 1482900);
+            countUp('statRepos', 482120);
+            countUp('statRobots', 14350);
+        }
+    </script>
+</body>
+</html>
